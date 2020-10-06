@@ -1,0 +1,26 @@
+{
+  "name": "js30-speech-detection",
+  "version": "1.0.0",
+  "description": "Wes Bos' JavaScript30 #20 Speech Detection",
+  "main": "scripts.js",
+  "scripts": {
+    "go": "browser-sync start --server --files \"*.css, *.html, *.js\"",
+    "start": "npm run lite",
+    "lite": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nik Rowe",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.12.5 <2.23.2",
+    "lite-server": "^2.5.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NikRowe/JS30-SPEECH-DETECTION.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NikRowe/JS30-SPEECH-DETECTION/issues"
+  },
+  "homepage": "https://github.com/NikRowe/JS30-SPEECH-DETECTION#readme"
+}
