@@ -7,8 +7,10 @@
 </head>
 
 <body>
-
   <div class="words" contenteditable>
+    <h5>Read the sentences below to see how accurate the browser understands you:</h5>
+    <p><i>"The quick brown fox jumped over the lazy dog."</i></p>
+    <p><i>"Hire this Dev."</i></p>
   </div>
 
   <script>
@@ -22,20 +24,33 @@
     const words = document.querySelector('.words');
     words.appendChild(p);
 
+    const emailDev = () => {
+      window.location.assign("mailto:nikrowedev@gmail.com?Subject=" + encodeURIComponent('We love your work!') + "&body=" + encodeURIComponent('Thanks for contacting me! You can erase this and put your message content here :) '));
+    }
+
     const printTranscript = (e) => {
-      const transcript = Array.from(e.results)
+      const result = Array.from(e.results)
         .map(result => result[0])
-        .map(result => result.transcript)
-        .join('')
+      const transcript = result.map(result => result.transcript).join('')
+      // gets accuracy of the speech to text and convrets to a % // 
+      let accuracy = (result.map(result => result.confidence) * 100).toFixed(2)
+      if (accuracy === '1.00') {
+        accuracy = '100%'
+      } else {
+        accuracy = `${accuracy}%`
+      }
 
-        p.textContent = transcript // puts speach to text into the P element for display //
-        // creates new lines upon starting/stopping speach instead of replacing current line // 
-        if(e.results[0].isFinal) {
-          p = document.createElement('p');
-          words.appendChild(p)
-        }
+      p.textContent = `"${transcript}", I am ${accuracy} confident this is what you said.` // puts speech to text into the P element for display //
 
-      console.log('transcript :', transcript)
+      // creates new lines upon starting/stopping speech instead of replacing current line // 
+      if (e.results[0].isFinal) {
+        p = document.createElement('p');
+        words.appendChild(p)
+      }
+
+      if (transcript === 'hire this dev' || transcript === 'higher this Dev') {
+        emailDev()
+      }
     }
 
     recognition.addEventListener('result', (e) => printTranscript(e))
@@ -60,6 +75,18 @@
     }
 
     .words {
+      max-width: 500px;
+      margin: 50px auto;
+      background: white;
+      border-radius: 5px;
+      box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
+      padding: 1rem 2rem 1rem 5rem;
+      background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
+      background-size: 100% 3rem;
+      position: relative;
+      line-height: 3rem;
+    }
+    .results {
       max-width: 500px;
       margin: 50px auto;
       background: white;
