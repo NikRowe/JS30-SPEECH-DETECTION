@@ -8,9 +8,9 @@
 
 <body>
   <div class="words" contenteditable>
-    <h5>Read the sentences below to see how accurate the browser understands you:</h5>
+    <h5>Read the sentences below out loud to see how accurate the browser understands you:</h5>
     <p><i>"The quick brown fox jumped over the lazy dog."</i></p>
-    <p><i>"Hire this Dev."</i></p>
+    <p class="sample"><i>"Hire this Dev."</i></p>
   </div>
 
   <script>
@@ -29,6 +29,7 @@
     }
 
     const printTranscript = (e) => {
+      
       const result = Array.from(e.results)
         .map(result => result[0])
       const transcript = result.map(result => result.transcript).join('')
@@ -112,6 +113,11 @@
       bottom: 0;
       border: 1px solid;
       border-color: transparent #efe4e4;
+    }
+
+    .sample{
+      border-bottom: 2px solid black;
+      width: 100%;
     }
   </style>
 
